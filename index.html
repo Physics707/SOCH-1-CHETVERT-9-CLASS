@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-visual">
+<title>СО за 1 четверть • Физика • 9 класс</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚛</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060a14; --panel:#0b1322; --panel2:#0d1729; --line:#1c2b47;
+  --cy:#22d3ee; --bl:#38bdf8; --gd:#fbbf24; --pk:#f472b6; --rd:#fb4d6d; --gn:#34d399;
+  --tx:#e8f1ff; --dim:#8fa3c4;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--tx);
+  font:16px/1.55 "Rubik",system-ui,sans-serif;
+  min-height:100vh; overflow-x:hidden;
+}
+body::before{content:'';position:fixed;inset:0;z-index:-3;pointer-events:none;
+  background:
+   radial-gradient(900px 520px at 85% -10%, rgba(34,211,238,.14), transparent 60%),
+   radial-gradient(760px 460px at -12% 108%, rgba(251,191,36,.09), transparent 60%),
+   radial-gradient(640px 420px at 108% 82%, rgba(244,114,182,.08), transparent 60%);
+  animation:drift 18s ease-in-out infinite alternate;}
+body::after{content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.05;
+  background:
+   repeating-linear-gradient(0deg, transparent 0 21px, #7dd3fc 21px 22px),
+   repeating-linear-gradient(90deg, transparent 0 21px, #7dd3fc 21px 22px);}
+@keyframes drift{to{transform:translate3d(0,-24px,0) scale(1.04)}}
+#stars{position:fixed;inset:0;z-index:-1;pointer-events:none}
+.wrap{max-width:780px;margin:0 auto;padding:22px 16px 48px}
+.disp{font-family:"Russo One","Rubik",sans-serif;letter-spacing:.02em}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:"Russo One";font-size:11px;letter-spacing:.22em;color:var(--cy);
+  border:1px solid rgba(34,211,238,.35);padding:6px 12px;border-radius:999px;background:rgba(34,211,238,.06);text-transform:uppercase}
+.eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--cy);box-shadow:0 0 10px var(--cy);animation:blink 1.6s infinite}
+@keyframes blink{50%{opacity:.25}}
+h1{font-family:"Russo One";font-size:clamp(27px,6.4vw,42px);line-height:1.12;margin:14px 0 6px}
+h1 .acc{color:var(--cy);text-shadow:0 0 26px rgba(34,211,238,.55)}
+.sub{color:var(--dim);font-size:15px}
+.card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:16px;
+  box-shadow:0 18px 50px rgba(2,8,23,.55);padding:22px;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--cy),transparent);opacity:.7}
+.scr{display:none}
+.scr.on{display:block;animation:up .45s ease both}
+@keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+/* ---------- регистрация ---------- */
+.teacher{display:flex;align-items:center;gap:14px;margin:18px 0}
+.tava{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;flex:none;
+  background:linear-gradient(135deg,#0ea5e9,#22d3ee);color:#04121c;font-family:"Russo One";font-size:18px;
+  box-shadow:0 0 24px rgba(34,211,238,.4)}
+.teacher b{display:block;font-size:16px}
+.teacher span{color:var(--dim);font-size:13px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.fact{font-size:13px;color:var(--dim);border:1px solid var(--line);border-radius:999px;padding:6px 12px;background:rgba(13,21,38,.6)}
+.fact b{color:var(--gd)}
+.field{margin:14px 0}
+.field label{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:7px;font-weight:600}
+.field input,.field select,.field textarea{
+  width:100%;background:#0a1120;border:1px solid #22345a;color:var(--tx);
+  padding:13px 14px;border-radius:12px;font:16px "Rubik";outline:none;transition:.25s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--cy);box-shadow:0 0 0 1px var(--cy),0 0 18px rgba(34,211,238,.3)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+/* ---------- кнопки ---------- */
+.btn{display:block;width:100%;padding:15px;border:none;border-radius:13px;cursor:pointer;
+  font-family:"Russo One";font-size:16px;letter-spacing:.05em;transition:.25s;touch-action:manipulation;
+  background:#101a30;color:#46587a}
+.btn.ready{background:linear-gradient(135deg,#0ea5e9,#22d3ee);color:#03121c;
+  box-shadow:0 0 26px rgba(34,211,238,.5),0 6px 22px rgba(14,165,233,.35);animation:pulse 1.8s infinite}
+.btn.ready:active{transform:scale(.98)}
+@keyframes pulse{50%{box-shadow:0 0 42px rgba(34,211,238,.8),0 6px 22px rgba(14,165,233,.35)}}
+.btn.ghost{background:transparent;border:1px solid #2a3d63;color:var(--dim);animation:none;box-shadow:none;margin-top:12px}
+.agree{display:flex;gap:11px;align-items:flex-start;margin:16px 0;cursor:pointer;font-size:14px;color:var(--dim)}
+.agree input{width:20px;height:20px;accent-color:var(--cy);margin-top:2px;flex:none}
+.agree.on{color:var(--tx)}
+ul.rules{list-style:none;margin:12px 0}
+ul.rules li{padding:9px 0 9px 34px;position:relative;border-bottom:1px dashed #16233c;font-size:14.5px;color:#c6d5ee}
+ul.rules li:last-child{border:none}
+ul.rules li::before{content:attr(data-i);position:absolute;left:0;top:8px;width:24px;height:24px;border-radius:8px;
+  display:grid;place-items:center;font-size:12px;background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.35)}
+/* ---------- тест ---------- */
+.thead{margin-bottom:14px}
+.trow{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+#qnum{font-family:"Russo One";font-size:clamp(17px,4.4vw,21px)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
+.chip{font-size:11px;font-weight:600;letter-spacing:.06em;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--dim);background:rgba(13,21,38,.7)}
+.chip.cy{color:var(--cy);border-color:rgba(34,211,238,.4)}
+.chip.gd{color:var(--gd);border-color:rgba(251,191,36,.4)}
+.tring{position:relative;width:64px;height:64px;flex:none}
+.tring svg{transform:rotate(-90deg)}
+.trb{fill:none;stroke:#142138;stroke-width:5}
+.trf{fill:none;stroke:var(--cy);stroke-width:5;stroke-linecap:round;filter:drop-shadow(0 0 5px rgba(34,211,238,.8));transition:stroke .3s}
+.tring.warn .trf{stroke:var(--gd);filter:drop-shadow(0 0 5px rgba(251,191,36,.8))}
+.tring.danger .trf{stroke:var(--rd);filter:drop-shadow(0 0 6px rgba(251,77,109,.9))}
+#trn{position:absolute;inset:0;display:grid;place-items:center;font-family:"Russo One";font-size:18px}
+.tring.danger #trn{color:var(--rd);animation:blink .5s infinite}
+.pbar{height:6px;border-radius:99px;background:#0d1729;border:1px solid #16233c;margin-top:12px;overflow:hidden}
+#pfill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--cy),var(--gd));box-shadow:0 0 12px rgba(34,211,238,.7);transition:width .5s}
+.qcard{transition:.3s}
+.qcard.ans{border-color:rgba(34,211,238,.6);box-shadow:0 0 0 1px rgba(34,211,238,.45),0 0 34px rgba(34,211,238,.22),0 18px 50px rgba(2,8,23,.55)}
+.qcard.timeup{border-color:var(--rd);box-shadow:0 0 0 1px var(--rd),0 0 34px rgba(251,77,109,.35)}
+.qtext{font-size:clamp(17px,4.5vw,19px);font-weight:600;line-height:1.5;margin:10px 0 14px}
+.qfig{margin:6px 0 16px}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:12px;align-items:center;width:100%;text-align:left;padding:13px 15px;border-radius:12px;
+  background:rgba(13,21,38,.8);border:1px solid #21324f;color:var(--tx);font:15px/1.45 "Rubik";cursor:pointer;
+  transition:.22s;user-select:none;touch-action:manipulation}
+.opt:hover{border-color:rgba(34,211,238,.5);transform:translateY(-1px)}
+.opt .k{flex:none;width:28px;height:28px;border-radius:9px;display:grid;place-items:center;
+  font-family:"Russo One";font-size:13px;color:var(--dim);border:1px solid #2a3d63;transition:.22s}
+.opt.sel{border-color:var(--cy);background:rgba(34,211,238,.08);
+  box-shadow:0 0 0 1px var(--cy),0 0 20px rgba(34,211,238,.35),inset 0 0 16px rgba(34,211,238,.07);animation:selPop .3s ease}
+.opt.sel .k{background:var(--cy);color:#04121c;border-color:var(--cy);box-shadow:0 0 12px rgba(34,211,238,.7)}
+@keyframes selPop{40%{transform:scale(1.015)}}
+.ansbox{display:flex;align-items:center;gap:12px}
+.ansbox input{flex:1;text-align:center;font-family:"Russo One";font-size:22px;letter-spacing:.05em;
+  background:#0a1120;border:1px solid #22345a;color:var(--gd);padding:14px;border-radius:12px;outline:none;transition:.25s}
+.ansbox input:focus{border-color:var(--cy);box-shadow:0 0 0 1px var(--cy),0 0 20px rgba(34,211,238,.35)}
+.hint{font-size:12.5px;color:var(--dim);margin-top:8px}
+.qcard textarea{width:100%;min-height:130px;resize:vertical;background:#0a1120;border:1px solid #22345a;
+  color:var(--tx);padding:13px;border-radius:12px;font:15px/1.55 "Rubik";outline:none;transition:.25s}
+.qcard textarea:focus{border-color:var(--cy);box-shadow:0 0 0 1px var(--cy),0 0 20px rgba(34,211,238,.3)}
+#btnNext{margin-top:18px}
+/* ---------- SVG-графики ---------- */
+.chart{width:100%;height:auto;display:block;background:#0a1120;border:1px solid #1c2b47;border-radius:12px}
+.gl{stroke:#16233c;stroke-width:1}
+.ax{stroke:#cfe0f4;stroke-width:1.6}
+.tk{fill:#8fa3c4;font:10px "Rubik";text-anchor:middle}
+.al{fill:#e8f1ff;font:italic 13px "Rubik"}
+.ln{fill:none;stroke:var(--cy);stroke-width:2.4;filter:drop-shadow(0 0 4px rgba(34,211,238,.8))}
+.pt{fill:var(--gd);stroke:#0a1120;stroke-width:1}
+.dash{stroke-dasharray:4 4;stroke:#8fa3c4;stroke-width:1.2}
+.area{fill:rgba(34,211,238,.09)}
+.va{stroke:var(--cy);stroke-width:2.6;filter:drop-shadow(0 0 3px rgba(34,211,238,.7))}
+.vb{stroke:var(--pk);stroke-width:2.6;filter:drop-shadow(0 0 3px rgba(244,114,182,.7))}
+.vc{stroke:var(--gd);stroke-width:2.2;filter:drop-shadow(0 0 3px rgba(251,191,36,.55))}
+.vl{font:italic 700 13px "Rubik";text-anchor:middle}
+text.va{fill:var(--cy)}text.vb{fill:var(--pk)}text.vc{fill:var(--gd)}
+.skyc{fill:rgba(34,211,238,.04);stroke:var(--bl);stroke-width:1.8}
+.skyd{stroke:#9fb4d8;stroke-width:1.3;stroke-dasharray:5 4}
+.skyeq{fill:none;stroke:var(--cy);stroke-width:2.2;filter:drop-shadow(0 0 3px rgba(34,211,238,.6))}
+.skym{fill:none;stroke:var(--gd);stroke-width:1.5;stroke-dasharray:5 4}
+.skye{fill:none;stroke:var(--pk);stroke-width:1.5;stroke-dasharray:5 4}
+.bdg circle{fill:#0b1526;stroke:var(--gd);stroke-width:1.7}
+.bdg text{fill:var(--gd);font:13px "Russo One";text-anchor:middle}
+.skyl{fill:#8fa3c4;font:11px "Rubik"}
+/* ---------- оверлеи ---------- */
+.ov{position:fixed;inset:0;z-index:60;display:none;place-items:center;background:rgba(4,8,18,.88);backdrop-filter:blur(4px);padding:20px}
+.ov.on{display:grid}
+.ovc{max-width:440px;width:100%;text-align:center;animation:up .35s ease both}
+.cd{font-family:"Russo One";font-size:110px;color:var(--cy);text-shadow:0 0 44px rgba(34,211,238,.9);animation:cd .8s ease both}
+@keyframes cd{from{transform:scale(1.7);opacity:0}to{transform:scale(1);opacity:1}}
+.inter{font-family:"Russo One"}
+.inter small{display:block;font-size:12px;letter-spacing:.3em;color:var(--gd);margin-bottom:8px}
+.inter b{display:block;font-size:clamp(22px,6vw,30px);color:var(--cy);text-shadow:0 0 30px rgba(34,211,238,.6)}
+.inter span{display:block;color:var(--dim);font-family:"Rubik";font-size:14px;margin-top:10px}
+.warnbox{border:2px solid var(--rd);border-radius:18px;padding:30px 24px;background:#140a12;
+  box-shadow:0 0 60px rgba(251,77,109,.35),inset 0 0 40px rgba(251,77,109,.06);animation:shake .5s ease}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-10px)}40%{transform:translateX(9px)}60%{transform:translateX(-6px)}80%{transform:translateX(4px)}}
+.warnbox .big{font-size:52px}
+.warnbox h3{font-family:"Russo One";color:var(--rd);font-size:22px;margin:8px 0 10px;text-shadow:0 0 18px rgba(251,77,109,.7)}
+.warnbox p{color:#e7c9d3;font-size:14.5px;margin-bottom:18px}
+.btn.rd{background:linear-gradient(135deg,#e11d48,#fb4d6d);color:#fff;box-shadow:0 0 26px rgba(251,77,109,.5)}
+/* ---------- результаты ---------- */
+.rhead{text-align:center;padding:28px 0 6px}
+.ring2{position:relative;width:170px;height:170px;margin:6px auto 4px}
+.ring2 svg{transform:rotate(-90deg)}
+.r2b{fill:none;stroke:#142138;stroke-width:9}
+.r2f{fill:none;stroke:var(--cy);stroke-width:9;stroke-linecap:round;filter:drop-shadow(0 0 8px rgba(34,211,238,.8));transition:stroke-dashoffset 1.3s ease}
+.r2c{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
+.r2c b{font-family:"Russo One";font-size:40px;color:var(--gd);text-shadow:0 0 26px rgba(251,191,36,.6)}
+.r2c span{color:var(--dim);font-size:13px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:18px 0}
+.meta .m{background:rgba(13,21,38,.75);border:1px solid var(--line);border-radius:12px;padding:11px 13px}
+.meta .m small{display:block;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:4px}
+.meta .m b{font-size:15px}
+.bad{color:var(--rd)} .good{color:var(--gn)}
+.srow{margin:11px 0}
+.srow .sl{display:flex;justify-content:space-between;font-size:13.5px;color:var(--dim);margin-bottom:5px}
+.srow .sl b{color:var(--tx)}
+.sbar{height:8px;border-radius:99px;background:#0d1729;border:1px solid #16233c;overflow:hidden}
+.sbar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--cy),var(--gd));box-shadow:0 0 10px rgba(34,211,238,.6);width:0;transition:width 1s ease}
+.grade{font-family:"Russo One";text-align:center;font-size:19px;color:var(--gd);margin-top:6px;text-shadow:0 0 18px rgba(251,191,36,.5)}
+#sentnote{text-align:center;font-size:13px;color:var(--dim);margin-top:14px}
+.ftr{text-align:center;color:#3d4f73;font-size:12px;margin-top:26px}
+@media (max-width:560px){
+  .card{padding:18px 15px}
+  .row2{grid-template-columns:1fr}
+  .tring{width:56px;height:56px}
+  #trn{font-size:16px}
+}
+</style>
+</head>
+<body>
+<canvas id="stars"></canvas>
+
+<main class="wrap">
+
+<!-- ═══════════ ЭКРАН 1: РЕГИСТРАЦИЯ ═══════════ -->
+<section id="scr-reg" class="scr on">
+  <span class="eyebrow"><i></i>Физика • 9 класс • 1 четверть</span>
+  <h1>Суммативное оценивание <span class="acc">за 1 четверть</span></h1>
+  <p class="sub" id="today"></p>
+
+  <div class="card" style="margin-top:18px">
+    <div class="teacher">
+      <div class="tava">КД</div>
+      <div><span>Учитель физики</span><b>Кунгозин Даулет Багдашұлы</b></div>
+    </div>
+    <div class="facts">
+      <span class="fact">📋 <b>30</b> вопросов</span>
+      <span class="fact">⭐ Максимум <b>30</b> баллов</span>
+      <span class="fact">⏱ ≈ <b>39</b> минут</span>
+      <span class="fact">🧪 <b>2</b> варианта</span>
+    </div>
+    <div class="field">
+      <label for="fio">Фамилия и имя учащегося</label>
+      <input id="fio" type="text" autocomplete="off" placeholder="Введите ФИ">
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label for="klass">Класс</label>
+        <select id="klass">
+          <option value="" selected disabled>— выберите —</option>
+          <option value="9 Б">9 Б</option>
+          <option value="9 В">9 В</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="variant">Вариант</label>
+        <select id="variant">
+          <option value="" selected disabled>— выберите —</option>
+          <option value="1">Вариант 1</option>
+          <option value="2">Вариант 2</option>
+        </select>
+      </div>
+    </div>
+    <button id="btnReg" class="btn" disabled>Продолжить →</button>
+  </div>
+  <p class="ftr">© Кабинет физики • академическая честность</p>
+</section>
+
+<!-- ═══════════ ЭКРАН 2: ДИСКЛЕЙМЕР ═══════════ -->
+<section id="scr-disc" class="scr">
+  <span class="eyebrow"><i></i>Правила прохождения</span>
+  <h1 style="font-size:clamp(23px,5.5vw,32px)">Дисклеймер <span class="acc">и правила</span></h1>
+  <div class="card" style="margin-top:16px">
+    <p class="sub" id="discWho"></p>
+    <ul class="rules">
+      <li data-i="📋">30 вопросов: 4 теоретических, 4 на формулы, 12 расчётных, 5 по графикам и схемам, 5 качественных.</li>
+      <li data-i="⏱">На вопрос с выбором ответа — <b>1 минута</b>, на расчётную и качественную задачу — <b>1,5 минуты</b>. По истечении таймера тест переходит к следующему вопросу автоматически.</li>
+      <li data-i="🚫">Кнопки «Назад» нет. Правильные ответы во время теста не показываются.</li>
+      <li data-i="🛡"><b>Античит:</b> сворачивание вкладки, переключение окон, попытка открыть второе окно/панель поверх теста — первое нарушение: <b>предупреждение</b>, второе: <b>тест завершается автоматически</b>. Клавиатура при вводе ответа нарушением не считается.</li>
+      <li data-i="🧮">Ответ на расчётную задачу — число без единиц измерения.</li>
+      <li data-i="✍️">Качественный ответ оценивается по ключевым понятиям: верно указаны 3 понятия из 5 — 1 балл.</li>
+      <li data-i="📤">Результат автоматически отправляется учителю в Google Таблицу.</li>
+    </ul>
+    <p class="sub" style="margin:10px 0 4px;color:var(--gd)" id="attInfo"></p>
+    <label class="agree" id="agreeLbl"><input type="checkbox" id="agree"> Я ознакомился(лась) с правилами, обязуюсь выполнять работу самостоятельно, соблюдая академическую честность.</label>
+    <button id="btnStart" class="btn" disabled>Начать тест ▶</button>
+  </div>
+</section>
+
+<!-- ═══════════ ЭКРАН 3: ТЕСТ ═══════════ -->
+<section id="scr-test" class="scr">
+  <div class="thead">
+    <div class="trow">
+      <div>
+        <div id="qnum" class="disp">Вопрос 1 / 30</div>
+        <div class="chips">
+          <span id="qsec" class="chip cy"></span>
+          <span id="qtopic" class="chip"></span>
+          <span id="qlr" class="chip gd"></span>
+        </div>
+      </div>
+      <div class="tring" id="tring">
+        <svg viewBox="0 0 64 64" width="64" height="64">
+          <circle class="trb" cx="32" cy="32" r="27"/>
+          <circle id="trf" class="trf" cx="32" cy="32" r="27"/>
+        </svg>
+        <span id="trn">60</span>
+      </div>
+    </div>
+    <div class="pbar"><div id="pfill"></div></div>
+  </div>
+
+  <div class="card qcard" id="qcard">
+    <div class="qtext" id="qtext"></div>
+    <div id="qbody"></div>
+    <div class="hint" id="qhint"></div>
+    <button id="btnNext" class="btn">Далее →</button>
+  </div>
+</section>
+
+<!-- ═══════════ ЭКРАН 4: РЕЗУЛЬТАТЫ ═══════════ -->
+<section id="scr-res" class="scr">
+  <span class="eyebrow"><i></i>Тест завершён</span>
+  <h1 style="font-size:clamp(24px,5.8vw,34px)">Ваш <span class="acc">результат</span></h1>
+  <div class="card" style="margin-top:16px">
+    <div class="rhead">
+      <div class="ring2">
+        <svg viewBox="0 0 170 170" width="170" height="170">
+          <circle class="r2b" cx="85" cy="85" r="74"/>
+          <circle id="r2f" class="r2f" cx="85" cy="85" r="74"/>
+        </svg>
+        <div class="r2c"><div><b id="rScore">0</b><span style="display:block">из 30 баллов</span><span id="rPct" style="display:block;margin-top:2px"></span></div></div>
+      </div>
+      <div class="grade" id="rGrade"></div>
+    </div>
+    <div class="meta">
+      <div class="m"><small>ФИО</small><b id="rFio"></b></div>
+      <div class="m"><small>Класс</small><b id="rCls"></b></div>
+      <div class="m"><small>Вариант</small><b id="rVar"></b></div>
+      <div class="m"><small>Попытка №</small><b id="rAtt"></b></div>
+      <div class="m"><small>Статус</small><b id="rStat"></b></div>
+      <div class="m"><small>Дата</small><b id="rDate"></b></div>
+    </div>
+    <div id="rParts"></div>
+    <p id="sentnote"></p>
+    <button id="btnAgain" class="btn ghost">↺ Пройти заново</button>
+  </div>
+</section>
+</main>
+
+<!-- оверлеи -->
+<div class="ov" id="ovCount"><div class="ovc"><div class="cd disp" id="cdNum">3</div><p class="sub">Приготовьтесь…</p></div></div>
+<div class="ov" id="ovInter"><div class="ovc inter"><small id="interNum"></small><b id="interName"></b><span id="interInfo"></span></div></div>
+<div class="ov" id="ovWarn">
+  <div class="ovc warnbox">
+    <div class="big">⚠️</div>
+    <h3>ПРЕДУПРЕЖДЕНИЕ</h3>
+    <p>Зафиксировано сворачивание окна / переключение / попытка открыть второе окно поверх теста.<br><br>При <b>повторном</b> нарушении тест будет завершён автоматически, и результат будет засчитан в текущем виде.</p>
+    <button id="btnWarnOk" class="btn rd">Я понял(а), продолжаю тест</button>
+  </div>
+</div>
+
+<script>
+'use strict';
+/* ══════════════════════════════════════════════════════════════
+   НАСТРОЙКА ОТПРАВКИ В GOOGLE SHEETS:
+   вставьте сюда URL веб-приложения из Apps Script (см. инструкцию)
+══════════════════════════════════════════════════════════════ */
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwyur-A0U8MRvM6wWp6AfiupZUITdURFaIqHlIu8C7f_1F4JIBtFJNhk7AQ7VQY3M2NXQ/exec';
+const MAX_SCORE = 30;
+
+const $ = s => document.querySelector(s);
+const norm = s => (s || '').toLowerCase().replace(/ё/g, 'е');
+
+/* ─────────── разделы ─────────── */
+const SEC = {
+  theory : {n:1, name:'Теоретические вопросы', time:60,  info:'4 вопроса • 1 минута на вопрос'},
+  formula: {n:2, name:'Выбор формулы',          time:60,  info:'4 вопроса • 1 минута на вопрос'},
+  calc   : {n:3, name:'Расчётные задачи',       time:90,  info:'12 задач • 1,5 минуты • ответ — число'},
+  graph  : {n:4, name:'Графики и схемы',        time:60,  info:'5 вопросов • 1 минута на вопрос'},
+  qual   : {n:5, name:'Качественные задачи',    time:90,  info:'5 вопросов • 1,5 минуты • развёрнутый ответ'}
+};
+const SECT_ORDER = ['theory','formula','calc','graph','qual'];
+const mc   = (lr,topic,t,o,a)=>({type:'mc',lr,topic,t,o,a});
+const num  = (lr,topic,t,ans)=>({type:'num',lr,topic,t,ans});
+const qual = (lr,topic,t,keys)=>({type:'qual',lr,topic,t,keys});
+
+/* ─────────── SVG: графики в клетку с осями ─────────── */
+const AXDEFS = `<defs><marker id="arwW" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#cfe0f4"/></marker></defs>`;
+function svgGraph({xl,yl,nx,ny,xs=1,ys=1,plot}){
+  const cell=22, pl=46, pt=32, pr=26, pb=40;
+  const W=pl+nx*cell+pr, H=pt+ny*cell+pb, ox=pl, oy=H-pb;
+  const X=v=>ox+v/xs*cell, Y=v=>oy-v/ys*cell;
+  let s=`<svg viewBox="0 0 ${W} ${H}" class="chart">${AXDEFS}`;
+  for(let i=0;i<=nx;i++){const x=ox+i*cell; s+=`<line x1="${x}" y1="${pt}" x2="${x}" y2="${oy}" class="gl"/>`;}
+  for(let j=0;j<=ny;j++){const y=oy-j*cell; s+=`<line x1="${ox}" y1="${y}" x2="${W-pr}" y2="${y}" class="gl"/>`;}
+  s+=`<line x1="${ox-6}" y1="${oy}" x2="${W-pr+14}" y2="${oy}" class="ax" marker-end="url(#arwW)"/>`;
+  s+=`<line x1="${ox}" y1="${oy+6}" x2="${ox}" y2="${pt-14}" class="ax" marker-end="url(#arwW)"/>`;
+  s+=`<text x="${ox-8}" y="${oy+15}" class="tk" text-anchor="end">0</text>`;
+  for(let i=1;i<=nx;i++) s+=`<text x="${ox+i*cell}" y="${oy+15}" class="tk">${i*xs}</text>`;
+  for(let j=1;j<=ny;j++) s+=`<text x="${ox-8}" y="${oy-j*cell+4}" class="tk" text-anchor="end">${j*ys}</text>`;
+  s+=`<text x="${W-pr+10}" y="${oy+28}" class="al">${xl}</text>`;
+  s+=`<text x="${ox-24}" y="${pt-14}" class="al">${yl}</text>`;
+  s+=plot(X,Y);
+  return s+'</svg>';
+}
+/* векторная схема в клетку */
+function svgVectors({a,b,cands}){
+  const cell=20,xmin=-5,xmax=5,ymin=-4,ymax=4,pad=26;
+  const W=(xmax-xmin)*cell+pad*2, H=(ymax-ymin)*cell+pad*2;
+  const ox=pad-xmin*cell, oy=pad+ymax*cell;
+  const X=i=>ox+i*cell, Y=j=>oy-j*cell;
+  const mk=(id,c)=>`<marker id="${id}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="${c}"/></marker>`;
+  let s=`<svg viewBox="0 0 ${W} ${H}" class="chart"><defs>${mk('arwW','#cfe0f4')}${mk('arwCy','#22d3ee')}${mk('arwPk','#f472b6')}${mk('arwAm','#fbbf24')}</defs>`;
+  for(let i=xmin;i<=xmax;i++) s+=`<line x1="${X(i)}" y1="${Y(ymin)}" x2="${X(i)}" y2="${Y(ymax)}" class="gl"/>`;
+  for(let j=ymin;j<=ymax;j++) s+=`<line x1="${X(xmin)}" y1="${Y(j)}" x2="${X(xmax)}" y2="${Y(j)}" class="gl"/>`;
+  s+=`<line x1="${X(xmin)-8}" y1="${Y(0)}" x2="${X(xmax)+12}" y2="${Y(0)}" class="ax" marker-end="url(#arwW)"/>`;
+  s+=`<line x1="${X(0)}" y1="${Y(ymin)+8}" x2="${X(0)}" y2="${Y(ymax)-12}" class="ax" marker-end="url(#arwW)"/>`;
+  s+=`<text x="${X(0)-6}" y="${Y(0)+14}" class="tk" text-anchor="end">0</text>`;
+  for(let i=xmin;i<=xmax;i++){ if(i && i%2===0) s+=`<text x="${X(i)}" y="${Y(0)+14}" class="tk">${i}</text>`; }
+  for(let j=ymin;j<=ymax;j++){ if(j && j%2===0) s+=`<text x="${X(0)-6}" y="${Y(j)+4}" class="tk" text-anchor="end">${j}</text>`; }
+  s+=`<text x="${X(xmax)+8}" y="${Y(0)+26}" class="al">x</text><text x="${X(0)+9}" y="${Y(ymax)-6}" class="al">y</text>`;
+  const arrow=(x,y,cls,mk,lab)=>{
+    const len=Math.hypot(x,y)||1, ux=x/len, uy=y/len;
+    let r=`<line x1="${X(0)}" y1="${Y(0)}" x2="${X(x)}" y2="${Y(y)}" class="${cls}" marker-end="url(#${mk})"/>`;
+    if(lab) r+=`<text x="${X(x)+ux*17}" y="${Y(y)+uy*17+4}" class="vl ${cls}">${lab}</text>`;
+    return r;
+  };
+  cands.forEach(c=>{ s+=arrow(c[1],c[2],'vc','arwAm',c[0]); });
+  s+=arrow(a[0],a[1],'va','arwCy','a');
+  s+=arrow(b[0],b[1],'vb','arwPk','b');
+  return s+'</svg>';
+}
+/* небесная сфера: зенит/надир/горизонт */
+const badge=(x,y,n)=>`<g class="bdg"><circle cx="${x}" cy="${y}" r="12"/><text x="${x}" y="${y+4.5}">${n}</text></g>`;
+function svgSkyZenith(){
+  return `<svg viewBox="0 0 300 250" class="chart">${AXDEFS}
+  <circle cx="150" cy="122" r="94" class="skyc"/>
+  <line x1="34" y1="122" x2="266" y2="122" class="skyd"/>
+  <line x1="150" y1="14" x2="150" y2="230" class="skyd"/>
+  <text x="264" y="110" class="skyl" text-anchor="end">горизонт</text>
+  <circle cx="150" cy="122" r="3" class="pt"/><text x="159" y="136" class="skyl">O</text>
+  ${badge(150,30,'1')}${badge(150,214,'2')}${badge(242,122,'3')}${badge(58,122,'4')}
+  </svg>`;
+}
+/* небесная сфера: линии (вариант 2) */
+function svgSkyLines(){
+  return `<svg viewBox="0 0 300 250" class="chart">
+  <circle cx="150" cy="122" r="94" class="skyc"/>
+  <line x1="34" y1="122" x2="266" y2="122" class="skyd"/>
+  <ellipse cx="150" cy="122" rx="94" ry="34" class="skyeq" transform="rotate(-18 150 122)"/>
+  <ellipse cx="150" cy="122" rx="32" ry="94" class="skym"  transform="rotate(12 150 122)"/>
+  <ellipse cx="150" cy="122" rx="94" ry="44" class="skye"  transform="rotate(24 150 122)"/>
+  ${badge(272,106,'1')}${badge(46,164,'2')}${badge(186,26,'3')}${badge(254,172,'4')}
+  </svg>`;
+}
+
+/* ══════════════════ БАНК ВОПРОСОВ ══════════════════ */
+const QB = { 1:{}, 2:{} };
+
+/* ───── ВАРИАНТ 1 ───── */
+QB[1].theory=[
+ mc('9.2.1.1','Механическое движение','Что называют материальной точкой?',
+   ['Геометрическую точку, совпадающую с центром тела',
+    'Тело, размерами которого можно пренебречь в данных условиях движения',
+    'Любое тело малой массы',
+    'Тело, движущееся только прямолинейно'],1),
+ mc('9.2.1.1','Система отсчёта','Что входит в систему отсчёта?',
+   ['Только тело отсчёта',
+    'Только систему координат',
+    'Тело отсчёта, систему координат и часы',
+    'Траекторию и путь движущегося тела'],2),
+ mc('9.2.1.9','Свободное падение','Свободным падением называют движение тела…',
+   ['только под действием силы тяжести (сопротивление воздуха отсутствует)',
+    'под действием силы тяжести и силы сопротивления воздуха',
+    'только вниз по наклонной плоскости',
+    'с постоянной скоростью'],0),
+ mc('9.7.2.2','Звёздное небо','От каких двух величин зависит светимость звезды?',
+   ['От массы звезды и расстояния до Земли',
+    'От цвета звезды и времени года',
+    'От возраста звезды и её параллакса',
+    'От радиуса звезды и температуры её поверхности'],3)
+];
+QB[1].formula=[
+ mc('9.2.1.5','Равноускоренное движение','Формула скорости тела при прямолинейном равноускоренном движении:',
+   ['v = v₀ + at','v = v₀ − at²','v = at²/2','v = s·t'],0),
+ mc('9.2.1.6','Перемещение','Формула перемещения при прямолинейном равноускоренном движении (начальная скорость v₀):',
+   ['s = v₀ + at²','s = v₀t + at²/2','s = at','s = v₀t − at²'],1),
+ mc('9.2.1.15','Центростремительное ускорение','Центростремительное ускорение вычисляется по формуле:',
+   ['a = v·R','a = R/v²','a = v²/R','a = v²·R'],2),
+ mc('9.2.1.14','Движение по окружности','Связь линейной скорости v и угловой скорости ω:',
+   ['v = ω/R','v = R/ω','v = ω + R','v = ω·R'],3)
+];
+QB[1].calc=[
+ num('9.2.1.3','Векторы: проекция','Модуль вектора равен 10, угол между вектором и осью Ox составляет 60°. Найдите проекцию вектора на ось Ox.',5),
+ num('9.2.1.2','Векторы: сложение','Два вектора, модули которых равны 6 и 8, взаимно перпендикулярны. Найдите модуль суммы этих векторов.',10),
+ num('9.2.1.5','Ускорение','Автомобиль увеличил скорость с 5 м/с до 25 м/с за 10 с. Найдите ускорение автомобиля (м/с²).',2),
+ num('9.2.1.6','Перемещение','Тело начало движение из состояния покоя с ускорением 3 м/с². Найдите перемещение тела за 4 с (м).',24),
+ num('9.2.1.5','Скорость','Тело движется прямолинейно с начальной скоростью 2 м/с и ускорением 4 м/с². Найдите скорость тела в конце 6-й секунды (м/с).',26),
+ num('9.2.1.9','Свободное падение','Камень свободно падает с высоты 45 м. Найдите время падения (с). Принять g = 10 м/с².',3),
+ num('9.2.1.9','Свободное падение','Тело свободно упало с высоты 20 м. Найдите модуль скорости тела в момент удара о землю (м/с). Принять g = 10 м/с².',20),
+ num('9.2.1.13','Движение по окружности','Точка равномерно движется по окружности радиусом 2 м с линейной скоростью 4 м/с. Найдите угловую скорость точки (рад/с).',2),
+ num('9.2.1.15','Центростремительное ускорение','Автомобиль движется по выпуклому участку дороги радиусом 50 м со скоростью 20 м/с. Найдите центростремительное ускорение (м/с²).',8),
+ num('9.7.2.8','Параллакс','Годичный параллакс звезды равен 0,5″. Определите расстояние до звезды (пк).',2),
+ num('9.7.2.7','Законы Кеплера','Большая полуось орбиты планеты A в 4 раза больше большой полуось орбиты планеты B. Во сколько раз период обращения планеты A больше периода обращения планеты B?',8),
+ num('9.2.1.6','Уравнение координаты','Координата тела изменяется по закону x = 2 + 3t + t² (все величины в СИ). Найдите координату тела в момент времени t = 4 с (м).',30)
+];
+QB[1].graph=[
+ {...mc('9.2.1.4','График скорости','По графику зависимости проекции скорости тела от времени определите ускорение тела.',
+   ['0,5 м/с²','2 м/с²','8 м/с²','16 м/с²'],1),
+  svg: svgGraph({xl:'t, с',yl:'v, м/с',nx:10,ny:10,ys:2,plot:(X,Y)=>
+   `<polyline class="ln" points="${X(0)},${Y(0)} ${X(8)},${Y(16)}"/><circle class="pt" cx="${X(0)}" cy="${Y(0)}" r="3.5"/><circle class="pt" cx="${X(8)}" cy="${Y(16)}" r="3.5"/>`})},
+ {...mc('9.2.1.4','График координаты','По графику зависимости координаты тела от времени определите перемещение тела за первые 4 с движения.',
+   ['4 м','8 м','16 м','32 м'],2),
+  svg: svgGraph({xl:'t, с',yl:'x, м',nx:6,ny:8,ys:2,plot:(X,Y)=>{
+   let p=''; for(let t=0;t<=4.01;t+=0.25) p+=`${X(t)},${Y(t*t)} `;
+   let d=''; for(let t=0;t<=4;t++) d+=`<circle class="pt" cx="${X(t)}" cy="${Y(t*t)}" r="3"/>`;
+   return `<polyline class="ln" points="${p.trim()}"/>${d}`;}})},
+ {...mc('9.7.2.3','Небесная сфера','На схеме показана небесная сфера с основными точками и линиями. Какой цифрой обозначен зенит?',
+   ['1','2','3','4'],0), svg: svgSkyZenith()},
+ {...mc('9.2.1.2','Сложение векторов','На схеме показаны векторы a и b, а также четыре вектора, обозначенные буквами А, Б, В, Г. Какой из них является суммой a + b?',
+   ['А','Б','В','Г'],2),
+  svg: svgVectors({a:[3,0],b:[0,2],cands:[['А',-3,2],['Б',3,-2],['В',3,2],['Г',-2,-3]]})},
+ {...mc('9.2.1.4','График ускорения','По графику зависимости проекции ускорения от времени найдите изменение скорости тела за первые 5 с движения (начальная скорость равна нулю).',
+   ['0,8 м/с','4 м/с','5 м/с','20 м/с'],3),
+  svg: svgGraph({xl:'t, с',yl:'a, м/с²',nx:6,ny:5,ys:1,plot:(X,Y)=>
+   `<polyline class="ln" points="${X(0)},${Y(0)} ${X(0)},${Y(4)} ${X(5)},${Y(4)}"/><line class="dash" x1="${X(5)}" y1="${Y(4)}" x2="${X(5)}" y2="${Y(0)}"/><circle class="pt" cx="${X(5)}" cy="${Y(4)}" r="3.5"/>`})}
+];
+QB[1].qual=[
+ qual('9.2.1.1','Относительность движения','Объясните смысл понятия «относительность механического движения». Приведите пример.',
+   [['систем'],['отсч'],['скорост'],['траектор','перемещен'],['тел','наблюдат']]),
+ qual('9.2.1.9','Свободное падение','Объясните результат опыта с трубкой Ньютона: почему пёрышко и дробинка падают в откачанной трубке одновременно.',
+   [['сопротивлен'],['воздух','вакуум'],['тяжест','гравитац','притяж'],['ускорен'],['одинаков','одноврем']]),
+ qual('9.7.2.1','Звёздные величины','Объясните, чем различаются видимая и абсолютная звёздные величины звезды.',
+   [['видим'],['абсолютн'],['блеск','яркост'],['светимост'],['расстоян','парсек']]),
+ qual('9.7.2.5','Движение светил','Объясните, почему суточное движение звёзд выглядит по-разному на разных географических широтах.',
+   [['горизонт'],['полюс','полярн'],['высот'],['вращени','ось','оси'],['восход','заход','кульминац']]),
+ qual('9.7.2.7','Законы Кеплера','Опираясь на второй закон Кеплера, объясните, почему вблизи Солнца планета движется быстрее.',
+   [['площад'],['сектор','радиус-вектор'],['перигели'],['скорост','быстр'],['времен']])
+];
+
+/* ───── ВАРИАНТ 2 ───── */
+QB[2].theory=[
+ mc('9.2.1.1','Материальная точка','В каком случае движущееся тело можно принять за материальную точку?',
+   ['Когда тело движется с постоянной скоростью',
+    'Когда тело имеет малую массу',
+    'Когда размеры тела пренебрежимо малы по сравнению с пройденным расстоянием',
+    'Всегда, любое тело'],2),
+ mc('9.2.1.1','Относительность движения','Утверждение «скорость тела зависит от выбора системы отсчёта» выражает…',
+   ['относительность механического движения',
+    'закон инерции',
+    'третий закон Кеплера',
+    'закон всемирного тяготения'],0),
+ mc('9.2.1.5','Ускорение','Как направлен вектор ускорения тела при торможении?',
+   ['В направлении скорости тела',
+    'Противоположно направлению скорости тела',
+    'Перпендикулярно скорости тела',
+    'Ускорение тела равно нулю'],1),
+ mc('9.7.2.7','Законы Кеплера','Второй закон Кеплера утверждает, что…',
+   ['планеты движутся по эллипсам, в одном из фокусов которых находится Солнце',
+    'квадраты периодов обращения планет пропорциональны кубам больших полуосей их орбит',
+    'все планеты обращаются вокруг Солнца в одном направлении',
+    'радиус-вектор планеты за равные промежутки времени описывает равные площади'],3)
+];
+QB[2].formula=[
+ mc('9.2.1.6','Перемещение','Формула перемещения при прямолинейном равноускоренном движении (начальная скорость v₀):',
+   ['s = v₀ + at²','s = v₀t + at²/2','s = v₀t² + at','s = (v₀ − at)t'],1),
+ mc('9.2.1.15','Центростремительное ускорение','Центростремительное ускорение через угловую скорость ω и радиус R:',
+   ['a = ω²R','a = ωR²','a = ω/R','a = ω²/R'],0),
+ mc('9.2.1.13','Движение по окружности','Связь угловой скорости ω и периода обращения T:',
+   ['ω = T/2π','ω = 2πT','ω = 2π/T','ω = π/T'],2),
+ mc('9.7.2.8','Параллакс','Расстояние до звезды (в парсеках) через её годичный параллакс p определяется формулой:',
+   ['r = p','r = p²','r = 1/p²','r = 1/p'],3)
+];
+QB[2].calc=[
+ num('9.2.1.3','Векторы: проекция','Модуль вектора равен 20, угол между вектором и осью Ox составляет 60°. Найдите проекцию вектора на ось Ox.',10),
+ num('9.2.1.2','Векторы: вычитание','Два вектора, модули которых равны 10 и 6, направлены в противоположные стороны. Найдите модуль разности этих векторов.',16),
+ num('9.2.1.2','Умножение вектора на скаляр','Вектор имеет составляющие 3 и 4 вдоль координатных осей. Этот вектор умножили на 2. Найдите модуль полученного вектора.',10),
+ num('9.2.1.5','Ускорение','Автомобиль тормозит: его скорость уменьшилась с 20 м/с до нуля за 4 с. Найдите модуль ускорения автомобиля (м/с²).',5),
+ num('9.2.1.6','Перемещение','Тело движется прямолинейно с начальной скоростью 4 м/с и ускорением 2 м/с². Найдите перемещение тела за 5 с (м).',45),
+ num('9.2.1.9','Свободное падение','Тело свободно падает из состояния покоя. Найдите модуль его скорости через 3 с после начала падения (м/с). Принять g = 10 м/с².',30),
+ num('9.2.1.9','Свободное падение','Камень свободно упал из состояния покоя и достиг земли через 2 с. Определите высоту, с которой упал камень (м). Принять g = 10 м/с².',20),
+ num('9.2.1.14','Движение по окружности','Точка равномерно движется по окружности радиусом 4 м с угловой скоростью 3 рад/с. Найдите линейную скорость точки (м/с).',12),
+ num('9.2.1.15','Центростремительное ускорение','Тело равномерно движется по окружности радиусом 25 м с линейной скоростью 10 м/с. Найдите центростремительное ускорение (м/с²).',4),
+ num('9.7.2.7','Законы Кеплера','Отношение больших полуосей орбит двух планет a₁/a₂ = 9. Во сколько раз период обращения первой планеты больше периода обращения второй?',27),
+ num('9.7.2.8','Параллакс','Годичный параллакс звезды равен 0,25″. Определите расстояние до звезды (пк).',4),
+ num('9.2.1.6','Уравнение координаты','Координата тела изменяется по закону x = 5 + 4t + t² (все величины в СИ). Найдите координату тела в момент времени t = 3 с (м).',26)
+];
+QB[2].graph=[
+ {...mc('9.2.1.4','График скорости','По графику зависимости проекции скорости тела от времени определите модуль ускорения тела.',
+   ['0,5 м/с²','2 м/с²','3 м/с²','10 м/с²'],1),
+  svg: svgGraph({xl:'t, с',yl:'v, м/с',nx:10,ny:6,ys:5,plot:(X,Y)=>
+   `<polyline class="ln" points="${X(0)},${Y(30)} ${X(10)},${Y(10)}"/><circle class="pt" cx="${X(0)}" cy="${Y(30)}" r="3.5"/><circle class="pt" cx="${X(10)}" cy="${Y(10)}" r="3.5"/>`})},
+ {...mc('9.2.1.4','Перемещение по графику','По графику зависимости проекции скорости тела от времени найдите перемещение тела за первые 6 с движения.',
+   ['12 м','18 м','36 м','72 м'],2),
+  svg: svgGraph({xl:'t, с',yl:'v, м/с',nx:8,ny:6,ys:2,plot:(X,Y)=>
+   `<polygon class="area" points="${X(0)},${Y(0)} ${X(6)},${Y(12)} ${X(6)},${Y(0)}"/><polyline class="ln" points="${X(0)},${Y(0)} ${X(6)},${Y(12)}"/><circle class="pt" cx="${X(6)}" cy="${Y(12)}" r="3.5"/>`})},
+ {...mc('9.7.2.3','Небесная сфера','На схеме показаны основные линии небесной сферы. Какой цифрой обозначен небесный экватор?',
+   ['1','2','3','4'],1), svg: svgSkyLines()},
+ {...mc('9.2.1.2','Вычитание векторов','На схеме показаны векторы a и b, а также четыре вектора, обозначенные буквами А, Б, В, Г. Какой из них является разностью a − b?',
+   ['А','Б','В','Г'],2),
+  svg: svgVectors({a:[4,0],b:[0,3],cands:[['А',4,3],['Б',-4,-3],['В',4,-3],['Г',-4,3]]})},
+ {...mc('9.2.1.4','График ускорения','По графику зависимости проекции ускорения от времени найдите скорость тела в момент t = 4 с (начальная скорость равна нулю).',
+   ['0,75 м/с','3 м/с','7 м/с','12 м/с'],3),
+  svg: svgGraph({xl:'t, с',yl:'a, м/с²',nx:6,ny:4,ys:1,plot:(X,Y)=>
+   `<polyline class="ln" points="${X(0)},${Y(0)} ${X(0)},${Y(3)} ${X(4)},${Y(3)}"/><line class="dash" x1="${X(4)}" y1="${Y(3)}" x2="${X(4)}" y2="${Y(0)}"/><circle class="pt" cx="${X(4)}" cy="${Y(3)}" r="3.5"/>`})}
+];
+QB[2].qual=[
+ qual('9.2.1.1','Материальная точка','Объясните, в каких случаях движущееся тело можно считать материальной точкой. Приведите пример.',
+   [['размер'],['пренебре','малы'],['расстоян'],['форм'],['вращени','поступательн']]),
+ qual('9.2.1.4','Ускорение','Объясните, какую физическую величину называют ускорением и что она показывает.',
+   [['скорост'],['изменени'],['времен'],['быстрот'],['направлен','вектор']]),
+ qual('9.2.1.15','Движение по окружности','Объясните, почему при равномерном движении по окружности у тела есть ускорение, хотя модуль скорости не меняется.',
+   [['скорост'],['изменени'],['вектор'],['центростремительн'],['перпендикулярн','касательн']]),
+ qual('9.7.2.6','Поясное время','Объясните, почему на Земле введено поясное время вместо местного времени каждого пункта.',
+   [['вращени'],['долгот'],['часовой','час'],['местн','солнечн'],['сутк','обращени']]),
+ qual('9.7.2.8','Метод параллакса','Объясните суть метода параллакса для определения расстояний до небесных тел.',
+   [['смещени','перемещени'],['угл'],['базис','орбит','диаметр'],['треугольник','тригонометр'],['парсек','астрономическ','звезд']])
+];
+
+/* сборка очереди вопросов */
+function buildQueue(v){
+  const D=QB[v], q=[];
+  SECT_ORDER.forEach(sec=>D[sec].forEach(it=>q.push({...it,sec})));
+  return q;
+}
+
+/* ══════════════════ ЗВЁЗДНЫЙ ФОН ══════════════════ */
+const cv=$('#stars'), cx=cv.getContext('2d'); let stars=[];
+function sky(){
+  cv.width=innerWidth; cv.height=innerHeight;
+  stars=Array.from({length:Math.min(170,Math.floor(innerWidth/4))},()=>({
+    x:Math.random()*cv.width, y:Math.random()*cv.height,
+    r:Math.random()*1.5+.3, p:Math.random()*Math.PI*2, s:.4+Math.random()*1.2}));
+}
+function loop(t){
+  cx.clearRect(0,0,cv.width,cv.height);
+  for(const st of stars){
+    cx.globalAlpha=.2+.7*Math.abs(Math.sin(st.p+t/1000*st.s));
+    cx.fillStyle='#cfefff';
+    cx.beginPath(); cx.arc(st.x,st.y,st.r,0,6.283); cx.fill();
+  }
+  requestAnimationFrame(loop);
+}
+sky(); requestAnimationFrame(loop);
+addEventListener('resize',sky);
+
+/* ══════════════════ НАВИГАЦИЯ ПО ЭКРАНАМ ══════════════════ */
+function show(id){ document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on')); $('#'+id).classList.add('on'); scrollTo({top:0}); }
+$('#today').textContent='Дата: '+new Date().toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'});
+
+/* ══════════════════ РЕГИСТРАЦИЯ ══════════════════ */
+const ST={fio:'',klass:'',variant:0};
+const fioEl=$('#fio'), klassEl=$('#klass'), varEl=$('#variant'), btnReg=$('#btnReg');
+function validateReg(){
+  btnReg.disabled = !(fioEl.value.trim().length>=3 && klassEl.value && varEl.value);
+  btnReg.classList.toggle('ready', !btnReg.disabled);
+}
+[fioEl,klassEl,varEl].forEach(el=>el.addEventListener('input',validateReg));
+btnReg.addEventListener('click',()=>{
+  ST.fio=fioEl.value.trim(); ST.klass=klassEl.value; ST.variant=+varEl.value;
+  $('#discWho').innerHTML=`Учащийся: <b style="color:var(--tx)">${ST.fio}</b> • Класс: <b style="color:var(--tx)">${ST.klass}</b> • Вариант: <b style="color:var(--tx)">${ST.variant}</b>`;
+  const att=+ (localStorage.getItem(attKey())||0) + 1;
+  $('#attInfo').textContent=`⚡ Это будет ваша попытка №${att}`;
+  show('scr-disc');
+});
+function attKey(){ return 'fiz9.att.'+ST.variant+'.'+norm(ST.fio).replace(/\s+/g,'_'); }
+
+/* ══════════════════ ДИСКЛЕЙМЕР → СТАРТ ══════════════════ */
+const agreeEl=$('#agree');
+agreeEl.addEventListener('change',()=>{
+  $('#btnStart').disabled=!agreeEl.checked;
+  $('#btnStart').classList.toggle('ready',agreeEl.checked);
+  $('#agreeLbl').classList.toggle('on',agreeEl.checked);
+});
+$('#btnStart').addEventListener('click',()=>{ agreeEl.checked=false; agreeEl.dispatchEvent(new Event('change')); countdown(); });
+
+function countdown(){
+  const ov=$('#ovCount'), num=$('#cdNum');
+  ov.classList.add('on'); let n=3; num.textContent=n;
+  const iv=setInterval(()=>{
+    n--;
+    if(n>0){ num.textContent=n; num.style.animation='none'; void num.offsetWidth; num.style.animation=''; }
+    else{
+      clearInterval(iv); ov.classList.remove('on');
+      startTest();
+    }
+  },800);
+}
+
+/* ══════════════════ ДВИЖОК ТЕСТА ══════════════════ */
+let S=null, timerId=null, deadline=0;
+const CIRC=2*Math.PI*27;
+$('#trf').style.strokeDasharray=CIRC;
+
+function startTest(){
+  const att=(+ (localStorage.getItem(attKey())||0))+1;
+  localStorage.setItem(attKey,att);
+  S={fio:ST.fio,klass:ST.klass,variant:ST.variant,q:buildQueue(ST.variant),i:0,
+     answers:new Array(30).fill(null),attempt:att,finished:false,qualInfo:[]};
+  show('scr-test');
+  AC.arm();
+  interstitial('theory',()=>renderQ());
+}
+function interstitial(secKey,cb){
+  const s=SEC[secKey];
+  $('#interNum').textContent='РАЗДЕЛ '+s.n+' ИЗ 5';
+  $('#interName').textContent=s.name;
+  $('#interInfo').textContent=s.info;
+  const ov=$('#ovInter'); ov.classList.add('on');
+  setTimeout(()=>{ ov.classList.remove('on'); cb(); },1500);
+}
+function renderQ(){
+  const q=S.q[S.i], sec=SEC[q.sec];
+  $('#qnum').textContent=`Вопрос ${S.i+1} / ${S.q.length}`;
+  $('#qsec').textContent=`Раздел ${sec.n} • ${sec.name}`;
+  $('#qtopic').textContent=q.topic;
+  $('#qlr').textContent=q.lr;
+  $('#qtext').textContent=q.t;
+  $('#pfill').style.width=(S.i/S.q.length*100)+'%';
+  const body=$('#qbody'); body.innerHTML='';
+  $('#qhint').textContent='';
+  if(q.svg) body.insertAdjacentHTML('beforeend',`<div class="qfig">${q.svg}</div>`);
+  if(q.type==='mc'){
+    const L=['А','Б','В','Г'];
+    const div=document.createElement('div'); div.className='opts';
+    q.o.forEach((opt,i)=>{
+      const b=document.createElement('button'); b.type='button'; b.className='opt';
+      b.innerHTML=`<span class="k">${L[i]}</span><span>${opt}</span>`;
+      b.addEventListener('click',()=>{
+        div.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));
+        b.classList.add('sel'); S.answers[S.i]=i; updateNext();
+      });
+      div.appendChild(b);
+    });
+    body.appendChild(div);
+  }
+  if(q.type==='num'){
+    body.insertAdjacentHTML('beforeend',
+      `<div class="ansbox"><input id="numin" autocomplete="off" inputmode="decimal" placeholder="?" aria-label="Ответ"></div>`);
+    $('#qhint').textContent='Ответ введите числом без единиц измерения. Дробную часть отделяйте запятой или точкой.';
+    const inp=$('#numin');
+    inp.addEventListener('input',()=>{ S.answers[S.i]=inp.value.trim()||null; updateNext(); });
+    inp.addEventListener('keydown',e=>{ if(e.key==='Enter' && !$('#btnNext').disabled) $('#btnNext').click(); });
+    setTimeout(()=>inp.scrollIntoView({block:'center',behavior:'smooth'}),250);
+  }
+  if(q.type==='qual'){
+    body.insertAdjacentHTML('beforeend',`<textarea id="qualin" rows="5" placeholder="Запишите развёрнутый ответ…" aria-label="Ответ"></textarea>`);
+    $('#qhint').textContent='Ответ оценивается по ключевым физическим понятиям (3 из 5 понятий — 1 балл).';
+    const ta=$('#qualin');
+    ta.addEventListener('input',()=>{ S.answers[S.i]=ta.value.trim()||null; updateNext(); });
+    setTimeout(()=>ta.scrollIntoView({block:'center',behavior:'smooth'}),250);
+  }
+  updateNext();
+  startTimer(sec.time);
+}
+function updateNext(){
+  const q=S.q[S.i]; let ok=false;
+  if(q.type==='mc')  ok=S.answers[S.i]!=null;
+  if(q.type==='num'){ const el=$('#numin'); ok=!!(el&&el.value.trim()); }
+  if(q.type==='qual'){ const el=$('#qualin'); ok=!!(el&&el.value.trim().length>=10); }
+  const b=$('#btnNext');
+  b.disabled=!ok;
+  b.classList.toggle('ready',ok);
+  b.textContent=(S.i===S.q.length-1)?'Завершить тест ✔':'Далее →';
+  $('#qcard').classList.toggle('ans',ok);
+}
+$('#btnNext').addEventListener('click',()=>{ commit(); advance(); });
+
+function commit(){
+  const q=S.q[S.i];
+  if(q.type==='num'){ const el=$('#numin'); if(el) S.answers[S.i]=el.value.trim(); }
+  if(q.type==='qual'){ const el=$('#qualin'); if(el) S.answers[S.i]=el.value.trim(); }
+}
+function advance(){
+  stopTimer();
+  if(S.i===S.q.length-1){ finish('Завершён'); return; }
+  const prevSec=S.q[S.i].sec; S.i++;
+  if(S.q[S.i].sec!==prevSec) interstitial(S.q[S.i].sec,()=>renderQ());
+  else renderQ();
+}
+function onTimeout(){
+  stopTimer();
+  $('#qcard').classList.add('timeup');
+  setTimeout(()=>{ $('#qcard').classList.remove('timeup'); commit(); advance(); },550);
+}
+
+/* таймер */
+function startTimer(sec){
+  stopTimer();
+  deadline=Date.now()+sec*1000;
+  S.totalMs=sec*1000;
+  paintTimer();
+  timerId=setInterval(paintTimer,120);
+}
+function stopTimer(){ if(timerId){ clearInterval(timerId); timerId=null; } }
+function paintTimer(){
+  const left=Math.max(0,deadline-Date.now());
+  $('#trf').style.strokeDashoffset=CIRC*(1-left/S.totalMs);
+  $('#trn').textContent=Math.ceil(left/1000);
+  const ring=$('#tring');
+  ring.classList.toggle('warn', left<=20000 && left>10000);
+  ring.classList.toggle('danger', left<=10000);
+}
+
+/* ══════════════════ ОЦЕНИВАНИЕ ══════════════════ */
+function gradeQual(q,ans){
+  const t=norm(ans||''); let m=0;
+  q.keys.forEach(g=>{ if(g.some(k=>t.includes(k))) m++; });
+  return m;
+}
+function gradeAll(){
+  let score=0;
+  const parts=SECT_ORDER.map(s=>({sec:s,got:0,max:0}));
+  S.q.forEach((q,i)=>{
+    const p=parts.find(x=>x.sec===q.sec); p.max++;
+    let ok=false;
+    if(q.type==='mc')  ok=S.answers[i]===q.a;
+    if(q.type==='num'){
+      const v=parseFloat(String(S.answers[i]??'').replace(',','.'));
+      ok=isFinite(v)&&Math.abs(v-q.ans)<=0.05;
+    }
+    if(q.type==='qual'){
+      const m=gradeQual(q,S.answers[i]);
+      S.qualInfo.push({topic:q.topic,m});
+      ok=m>=3;
+    }
+    if(ok){ score++; p.got++; }
+  });
+  return {score,parts};
+}
+
+/* ══════════════════ ЗАВЕРШЕНИЕ И ОТПРАВКА ══════════════════ */
+function finish(status){
+  if(S.finished) return;
+  S.finished=true; stopTimer(); AC.disarm();
+  const {score,parts}=gradeAll();
+  const payload={
+    fio:S.fio, klass:S.klass, variant:S.variant,
+    score, max:MAX_SCORE, percent:Math.round(score/MAX_SCORE*100),
+    attempt:S.attempt, status,
+    date:new Date().toLocaleString('ru-RU')
+  };
+  try{
+    const hist=JSON.parse(localStorage.getItem('fiz9.results')||'[]');
+    hist.push(payload); localStorage.setItem('fiz9.results',JSON.stringify(hist));
+  }catch(e){}
+  showResults(payload,parts);
+  sendToSheets(payload);
+}
+function sendToSheets(p){
+  const note=$('#sentnote');
+  if(!SCRIPT_URL || SCRIPT_URL.indexOf('ВСТАВЬТЕ')===0){
+    note.textContent='⚠ Отправка в Google Sheets не настроена (укажите SCRIPT_URL в файле). Результат сохранён на этом устройстве.';
+    return;
+  }
+  try{
+    fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',body:JSON.stringify(p)});
+    note.textContent='✔ Результат отправлен учителю в Google Таблицу';
+  }catch(e){ note.textContent='⚠ Ошибка сети. Результат сохранён локально.'; }
+}
+function showResults(p,parts){
+  show('scr-res');
+  $('#rFio').textContent=p.fio;
+  $('#rCls').textContent=p.klass;
+  $('#rVar').textContent='Вариант '+p.variant;
+  $('#rAtt').textContent=p.attempt;
+  $('#rDate').textContent=p.date;
+  const st=$('#rStat'); st.textContent=p.status;
+  st.className = p.status==='Завершён' ? 'good' : 'bad';
+  $('#rPct').textContent=p.percent+'%';
+  const gEl=$('#rGrade');
+  gEl.textContent = p.percent>=90?'Оценка: ОТЛИЧНО ★':p.percent>=70?'Оценка: ХОРОШО':p.percent>=40?'Оценка: УДОВЛЕТВОРИТЕЛЬНО':'Рекомендация: повторить темы';
+  /* кольцо */
+  const C2=2*Math.PI*74, rf=$('#r2f');
+  rf.style.strokeDasharray=C2; rf.style.strokeDashoffset=C2;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{ rf.style.strokeDashoffset=C2*(1-p.percent/100); }));
+  /* счётчик баллов */
+  const el=$('#rScore'), t0=performance.now();
+  (function cnt(t){ const k=Math.min(1,(t-t0)/1100); el.textContent=Math.round(p.score*k); if(k<1) requestAnimationFrame(cnt); })(t0);
+  /* разбивка по разделам */
+  const box=$('#rParts'); box.innerHTML='';
+  parts.forEach(pt=>{
+    const row=document.createElement('div'); row.className='srow';
+    row.innerHTML=`<div class="sl"><span>${SEC[pt.sec].name}</span><b>${pt.got} / ${pt.max}</b></div><div class="sbar"><i></i></div>`;
+    box.appendChild(row);
+    setTimeout(()=>{ row.querySelector('i').style.width=(pt.max?pt.got/pt.max*100:0)+'%'; },200);
+  });
+  if(S.qualInfo.length){
+    const row=document.createElement('div'); row.className='srow';
+    row.innerHTML=`<div class="sl"><span>Ключевые понятия в качественных ответах</span><b>${S.qualInfo.map(x=>x.m+'/5').join(' • ')}</b></div>`;
+    box.appendChild(row);
+  }
+}
+$('#btnAgain').addEventListener('click',()=>{
+  fioEl.value=''; klassEl.selectedIndex=0; varEl.selectedIndex=0; validateReg();
+  show('scr-reg');
+});
+/* если вкладку закрыли во время теста */
+addEventListener('pagehide',()=>{
+  if(S && !S.finished){
+    try{
+      const p={fio:S.fio,klass:S.klass,variant:S.variant,score:'',max:MAX_SCORE,percent:'',attempt:S.attempt,status:'Прерван (выход из теста)',date:new Date().toLocaleString('ru-RU')};
+      if(SCRIPT_URL && SCRIPT_URL.indexOf('ВСТАВЬТЕ')!==0 && navigator.sendBeacon)
+        navigator.sendBeacon(SCRIPT_URL,new Blob([JSON.stringify(p)],{type:'text/plain'}));
+    }catch(e){}
+  }
+});
+addEventListener('beforeunload',e=>{
+  if(S && !S.finished){ e.preventDefault(); e.returnValue=''; }
+});
+
+/* ══════════════════ АНТИЧИТ ══════════════════
+   • сворачивание вкладки/окна, переключение приложений:
+     1-й раз — предупреждение, 2-й раз — завершение теста;
+   • НЕ срабатывает на выдвижение клавиатуры (в т.ч. на iPhone)
+     и на системные жесты, не скрывающие страницу;
+   • Samsung: выдвижение второго окна/панели поверх теста
+     детектируется через потерю фокуса и изменение размера окна.  */
+const AC={
+  strikes:0, armed:false, base:1, lastKey:0,
+  arm(){ this.armed=true; this.strikes=0; this.base=innerWidth*innerHeight; },
+  disarm(){ this.armed=false; }
+};
+const isTypingEl = el => el && (el.tagName==='INPUT' || el.tagName==='TEXTAREA');
+const isTyping   = () => isTypingEl(document.activeElement);
+function violation(){
+  if(!AC.armed || !S || S.finished) return;
+  AC.strikes++;
+  if(AC.strikes===1){ $('#ovWarn').classList.add('on'); }
+  else{ $('#ovWarn').classList.remove('on'); finish('Прерван (античит)'); }
+}
+$('#btnWarnOk').addEventListener('click',()=>$('#ovWarn').classList.remove('on'));
+document.addEventListener('focusin', e=>{ if(isTypingEl(e.target)) AC.lastKey=Date.now(); });
+document.addEventListener('focusout',e=>{ if(isTypingEl(e.target)) AC.lastKey=Date.now(); });
+/* главная и надёжная проверка: страница реально скрыта */
+document.addEventListener('visibilitychange',()=>{ if(document.hidden) violation(); });
+/* потеря фокуса без скрытия страницы (панели, вторые окна).
+   Игнорируем, если активна клавиатура/поле ввода — защита от
+   ложных срабатываний на iPhone и при вводе ответа. */
+addEventListener('blur',()=>{
+  setTimeout(()=>{
+    if(!AC.armed || document.hidden) return;
+    if(isTyping()) return;
+    if(Date.now()-AC.lastKey<800) return;
+    violation();
+  },180);
+});
+/* сильное уменьшение окна без клавиатуры = второе окно/разделение экрана */
+addEventListener('resize',()=>{
+  if(!AC.armed) return;
+  if(isTyping() || Date.now()-AC.lastKey<800){ AC.base=innerWidth*innerHeight; return; }
+  const a=innerWidth*innerHeight;
+  if(a < AC.base*0.7){ AC.base=a; violation(); }
+  else AC.base=a;
+});
+</script>
+</body>
+</html>
